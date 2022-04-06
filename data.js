@@ -26,3 +26,23 @@ export const dataOrden = (data, sortOrder) => {
             return data
     }
 };
+
+export const percetFloor = (num, tot) => Math.floor(num * 100 / tot);
+
+export const computeStats = (data) => {
+    const total = data.length;
+    let countEasy = 0;
+    let countMedium = 0;
+    let countHard = 0;
+    for (const element of data) {
+        if (element.info.difficulty <= 3) {
+            countEasy++;
+        } else if (element.info.difficulty >= 4 && element.info.difficulty <= 6) {
+            countMedium++;
+        } else {
+            countHard++;
+        }
+
+    }
+    return [percetFloor(countEasy, total), percetFloor(countMedium, total), percetFloor(countHard, total)]
+}
